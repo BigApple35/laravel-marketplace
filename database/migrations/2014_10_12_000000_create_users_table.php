@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger("tenant_id")->nullable();
+            $table->foreign("tenant_id")->references("id")->on("tenants")->onDelete("cascade")->onUpdate("cascade");
             $table->rememberToken();
-            $table->string('subdomain')->nullable();
             $table->timestamps();
         });
     }

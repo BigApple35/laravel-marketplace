@@ -60,6 +60,11 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(User::class, 'created_by_id');
     }
 
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
     public function getPrice()
     {
         return $this->price ? '$'.number_format($this->price, 2) : 'FREE';

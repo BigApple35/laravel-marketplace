@@ -47,7 +47,16 @@
                 <a href="{{ route('admin.products.index') }}" class="nav-link">
                     <i class="nav-icon fa fa-book"></i>
                     <p>
-                        {{ __('Product') }}
+                        {{ __('Produk') }}
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.pesanan.index') }}" class="nav-link">
+                    <i class="nav-icon fa fa-book"></i>
+                    <p>
+                        {{ __('Pesanan') }}
                     </p>
                 </a>
             </li>

@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, 'created_by_id', 'id');
     }
 
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
     public function randomProductImage()
     {
         $products = $this->products->pluck('id');
