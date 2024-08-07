@@ -22,6 +22,10 @@ class RoleSeeder extends Seeder
                 'id'    => 2,
                 'title' => 'user',
             ],
+            [
+                'id'    => 3,
+                'title' => 'seller',
+            ],
         ];
 
         Role::insert($roles);
