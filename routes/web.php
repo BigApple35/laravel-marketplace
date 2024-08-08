@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,6 @@ Route::domain("{subdomain}.localhost")->group(function () {
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('homepage');
 Route::get('search', [App\Http\Controllers\Frontend\HomeController::class, 'search'])->name('search');
 
-Route::get('/coba', [App\Http\Controllers\Coba::class, 'coba']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -39,4 +39,5 @@ Route::group(['middleware' => 'auth','prefix' => 'admin', 'as' => 'admin.'], fun
     Route::post('products/media', [\App\Http\Controllers\Admin\ProductController::class, 'storeMedia'])->name('products.storeMedia');
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
     Route::resource('pesanan', App\Http\Controllers\PesananController::class);
+
 });

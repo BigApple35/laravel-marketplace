@@ -58,6 +58,8 @@ class PesananController extends Controller
         $newProduct->product_id = $product->id; // Assuming you have a product_id field
         $newProduct->total_harga = $validated['price'];
         $newProduct->nomor = $validated['nomor'];
+        $newProduct->status = "pesanan telah diterima";
+        $newProduct->created_by = auth()->id();
         $newProduct->prioritas = $validated['prioritas'] ? 1 : 0; // Convert checkbox value to 1 or 0
         $newProduct->save();
 

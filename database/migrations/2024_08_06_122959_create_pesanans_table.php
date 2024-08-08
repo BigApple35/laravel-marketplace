@@ -23,8 +23,9 @@ return new class extends Migration
             $table->foreign("tenant_id")->references("id")->on("tenants")->onDelete("cascade")->onUpdate("cascade");
             $table->string("nomor");
             $table->smallInteger("prioritas");
+            $table->unsignedBigInteger("created_by");
             $table->timestamps();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 
