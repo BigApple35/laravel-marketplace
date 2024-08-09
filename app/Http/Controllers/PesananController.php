@@ -9,6 +9,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+
 class PesananController extends Controller
 {
 
@@ -16,9 +18,9 @@ class PesananController extends Controller
     {
         $isAdmin = auth()->user()->roles->contains(1);
 
-        if(!$isAdmin) {
+        if (!$isAdmin) {
             $pesanans = Pesanan::where('created_by_id', auth()->id())->with("product")->get();
-        }else {
+        } else {
             $pesanans = Pesanan::with("product")->get();
         }
 
@@ -36,11 +38,11 @@ class PesananController extends Controller
     {
         $isAdmin = auth()->user()->roles->contains(1);
 
-        if(!$isAdmin) {
+        if (!$isAdmin) {
             redirect()->route('admin.pesanan.index')->with('success', 'Product created failed!');
         }
 
-            // Validate the request data
+        // Validate the request data
         $validated = $request->validate([
             'nama_customer' => 'required|string|max:255',
             'product' => 'required|integer|exists:products,id',
@@ -52,16 +54,34 @@ class PesananController extends Controller
         // Get the selected product
         $product = Product::findOrFail($validated['product']);
 
+
+        function generateUniqueOrderCode()
+        {
+            $code = Str::random(12); // Generate a random 12-character string
+
+            // Check if the generated code already exists in the database
+            while (Pesanan::where('kode_pesanan', $code)->exists()) {
+                $code = Str::random(12); // Generate a new code if it already exists
+            }
+
+            return $code;
+        }
+
+
+
         // Create a new product instance and save it to the database
+
         $newProduct = new Pesanan();
         $newProduct->nama_customer = $validated['nama_customer'];
         $newProduct->product_id = $product->id; // Assuming you have a product_id field
         $newProduct->total_harga = $validated['price'];
         $newProduct->nomor = $validated['nomor'];
         $newProduct->status = "pesanan telah diterima";
+        // $newProduct->kode_pesanan = generateUniqueOrderCode(); // Assign unique order code here
         $newProduct->created_by = auth()->id();
         $newProduct->prioritas = $validated['prioritas'] ? 1 : 0; // Convert checkbox value to 1 or 0
         $newProduct->save();
+
 
         // Redirect or return success message
         return redirect()->route('admin.pesanan.index')->with('success', 'Product created successfully!');

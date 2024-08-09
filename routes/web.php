@@ -41,3 +41,4 @@ Route::group(['middleware' => 'auth','prefix' => 'admin', 'as' => 'admin.'], fun
     Route::resource('pesanan', App\Http\Controllers\PesananController::class);
 
 });
+
