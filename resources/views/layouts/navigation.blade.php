@@ -1,3 +1,37 @@
+<style>
+    .sidebar .nav-item {
+    border-bottom: 1px solid #004080; /* Separator line between items */
+    margin-top: 20px
+}
+
+.sidebar .nav-link {
+    color: #ffffff; /* Text color */
+    position: relative;
+}
+
+.sidebar .nav-link:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff; /* Underline on hover */
+    transition: width 0.3s ease-in-out;
+}
+
+.sidebar .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #000000;
+    transition: width 0.3s ease-in-out;
+}
+
+</style>
 <!-- Sidebar -->
 <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
@@ -36,30 +70,24 @@
             @endcan
 
             <li class="nav-item">
-            <a href="{{ route('admin.dashboard.index') }}" class="nav-link">
+                <a href="{{ route('admin.dashboard.index') }}" class="nav-link">
                     <i class="nav-icon fa fa-book"></i>
-                    <p>
-                        {{ __('Dashboard') }}
-                    </p>
+                    <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('admin.products.index') }}" class="nav-link">
                     <i class="nav-icon fa fa-book"></i>
-                    <p>
-                        {{ __('Produk') }}
-                    </p>
+                    <p>{{ __('Produk') }}</p>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a href="{{ route('admin.pesanan.index') }}" class="nav-link">
                     <i class="nav-icon fa fa-book"></i>
-                    <p>
-                        {{ __('Pesanan') }}
-                    </p>
+                    <p>{{ __('Pesanan') }}</p>
                 </a>
             </li>
+            
 
         </ul>
     </nav>
