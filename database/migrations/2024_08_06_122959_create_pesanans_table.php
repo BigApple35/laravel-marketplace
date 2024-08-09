@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("nomor");
             $table->smallInteger("prioritas");
             $table->unsignedBigInteger("created_by");
+            $table->string("kode_pesanan")->unique();
             $table->timestamps();
             $table->foreign('created_by')->references('id')->on('users');
         });

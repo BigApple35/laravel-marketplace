@@ -38,9 +38,9 @@
                             @forelse($pesanans as $product)
                             <tr data-entry-id="{{ $product->id }}">
                                 <td>
-
+                                    {{ $loop->iteration }}
                                 </td>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $product->kode_pesanan }}</td>
                                 <td>{{ $product->nama_customer }}</td>
                                 <td>{{ $product->total_harga }}</td>
                                 <td>{{ $product->product->name }}</td>

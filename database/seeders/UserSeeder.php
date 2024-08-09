@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
                 'email'          => 'admin@admin.com',
                 'password'       => bcrypt('123'),
                 'remember_token' => null,
+                'subdomain' => 'asu',
             ],
         ];
 
